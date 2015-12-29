@@ -1,0 +1,291 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(0, 0, 0);
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+div#Debugger {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: #333333;
+    padding: 5px;
+    color: #ffffff;
+    font-family: sans-serif;
+    z-index: 4;
+}
+
+div#Debugger div.Header {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+div#Debugger div.Header span#MessageCount {
+    color: #ffffff;
+    margin-left: 2px;
+}
+
+div#Debugger div.Header span#FPS {
+    color: #ffffff;
+    font-size: 12px;
+    float: right;
+    margin-top: 2px;
+    margin-right: 2px;
+}
+
+div#Debugger div.Header a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 12px;
+    float: right;
+    cursor: pointer;
+    cursor: hand;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+div#Debugger div#Messages {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div#Debugger div#Messages ul {
+    padding: 5px;
+    margin: 0 0 0 15px;
+}
+
+li.DebugMessageSuccess {
+    color: #33aa33;
+}
+
+li.DebugMessageInformation {
+    color: #3366ff;
+}
+
+li.DebugMessageError {
+    color: #aa3333;
+}
+
+div#GameFrame {
+    background: rgb(10, 20, 50) url('drawable/bg.png');
+    position: fixed;
+    z-index: 0;
+}
+
+div#GameFrame canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+}
+
+div#GameFrame canvas.Static {
+    z-index: 0;
+}
+
+div#GameFrame canvas.Dynamic {
+    z-index: 1;
+}
+
+div#GameFrame canvas.Menu {
+    z-index: 2;
+}
+
+div#GameFrame canvas.Debugger {
+    z-index: 3;
+}
+
+div#GameFrame div#MenuFrame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+    z-index: 4;
+    overflow: hidden;
+}
+
+div#GameFrame div#MenuFrame div#SplashScreenFrame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+    overflow: hidden;
+}
+
+div#GameFrame div#MenuFrame div#SplashScreenFrame div#Title {
+    display: block;
+    position: absolute;
+    width: 700px;
+    height: 348px;
+    background-size: 700px 348px;
+    background: url('drawable/title.png') no-repeat;
+    opacity: 0;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -o-transform-origin: center;
+    -ms-transform-origin: center;
+}
+
+div#GameFrame div#MenuFrame div#SplashScreenFrame div#NinjaStarOne {
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 210px;
+    background-size: 200px 210px;
+    background: url('drawable/ninja_star.png') no-repeat;
+    opacity: 0;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -o-transform-origin: center;
+    -ms-transform-origin: center;
+}
+
+div#GameFrame div#MenuFrame div#SplashScreenFrame div#NinjaStarTwo {
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 210px;
+    background-size: 200px 210px;
+    background: url('drawable/ninja_star.png') no-repeat;
+    opacity: 0;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -o-transform-origin: center;
+    -ms-transform-origin: center;
+}
+
+div#GameFrame div#MenuFrame div#MainMenuFrame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+    overflow: hidden;
+}
+
+div#GameFrame div#MenuFrame div#MainMenuFrame div#Title {
+    position: absolute;
+    width: 700px;
+    height: 348px;
+    background-size: 700px 348px;
+    background: url('drawable/title.png') no-repeat;
+    opacity: 0;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -o-transform-origin: center;
+    -ms-transform-origin: center;
+}
+
+div.Strings {
+    position: absolute;
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -o-transform-origin: center;
+    -ms-transform-origin: center;
+}
+
+div.Characters {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    background-repeat: no-repeat;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -o-transform-origin: center;
+    -ms-transform-origin: center;
+}
+
+div.DomoAregato-b,
+div.DomoAregato-d,
+div.DomoAregato-f {
+    margin-top: -24px;
+}
+
+div.DomoAregato-g,
+div.DomoAregato-m,
+div.DomoAregato-n,
+div.DomoAregato-o {
+    margin-top: -3px;
+}
+
+div.DomoAregato-h,
+div.DomoAregato-k,
+div.DomoAregato-l {
+    margin-top: -16px;
+}
+
+div.DomoAregato-i {
+    margin-top: -21px;
+}
+
+div.DomoAregato-j,
+div.DomoAregato-t {
+    margin-top: -18px;
+}
+
+div.DomoAregato-u,
+div.DomoAregato-z {
+    margin-top: 3px;
+}
+
+div.DomoAregato-space {
+    width: 24px;
+    height: 24px;
+    vertical-align: bottom;
+}
+
+div.DomoAregato-dot {
+    margin-top: 24px;
+}
+
+div.DomoAregato-Upper {
+    margin-top: -26px;
+}
+
+table#LoadingFrame {
+    background: rgb(20, 20, 20);
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #ffffff;
+    font: bold 20px sans-serif;
+    z-index: 4;
+}
+
+table#LoadingFrame div#Header {
+    width: 300px;
+    height: auto;
+    text-align: left;
+    font-size: 48px;
+    padding: 10px;
+    border-bottom: solid 2px #ffffff;
+    margin-bottom: 10px;
+}
+
+table#LoadingFrame div#Container {
+    width: 300px;
+    height: auto;
+}
+
+table#LoadingFrame div#Container div#State {
+    float: left;
+}
+
+table#LoadingFrame div#Container div#Percentage {
+    float: right;
+}

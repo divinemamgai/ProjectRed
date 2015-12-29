@@ -1,0 +1,6 @@
+<strings>
+    <string id="EnterToContinue" scale="0.5" family="DomoAregato">Press Enter to continue...</string>
+    <string id="ContinueGame" scale="0.5" family="DomoAregato">Continue Game</string>
+    <string id="NewGame" scale="0.5" family="DomoAregato">New Game</string>
+    <string id="Controls" scale="0.5" family="DomoAregato">Settings</string>
+</strings>

@@ -1,0 +1,57 @@
+<keys>
+    <key>
+        <name>Enter</name>
+        <character>Enter</character>
+        <code>13</code>
+    </key>
+    <key>
+        <name>Space</name>
+        <character>Space</character>
+        <code>32</code>
+    </key>
+    <key>
+        <name>Shift</name>
+        <character>Shift</character>
+        <code>16</code>
+    </key>
+    <key>
+        <name>Control</name>
+        <character>Ctrl</character>
+        <code>17</code>
+    </key>
+    <key>
+        <name>Escape</name>
+        <character>Esc</character>
+        <code>27</code>
+    </key>
+    <key>
+        <name>Left</name>
+        <character>Arrow Left</character>
+        <code>37</code>
+    </key>
+    <key>
+        <name>Up</name>
+        <character>Arrow Up</character>
+        <code>38</code>
+    </key>
+    <key>
+        <name>Right</name>
+        <character>Arrow Right</character>
+        <code>39</code>
+    </key>
+    <key>
+        <name>Down</name>
+        <character>Arrow Down</character>
+        <code>40</code>
+    </key>
+    <key>
+        <name>X</name>
+        <character>X</character>
+        <code>88</code>
+    </key>
+    <key>
+        <name>Z</name>
+        <character>Z</character>
+        <code>90</code>
+    </key>
+</keys>

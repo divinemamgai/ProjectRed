@@ -1,0 +1,1141 @@
+[
+  {
+    "type": "dynamic",
+    "physics": true,
+    "special": "player",
+    "frames": {
+      "columns": 4,
+      "rows": 4,
+      "current": 4
+    },
+    "size": [32, 32],
+    "image": {
+      "width": 128,
+      "height": 128,
+      "drawMethod": "clip",
+      "file": "player.png"
+    },
+    "center": [600, 200],
+    "rotationCenter": [600, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "circle",
+      "vertices": [],
+      "dimensions": [16]
+    },
+    "opacity": 1,
+    "cor": 0.5,
+    "cof": 0,
+    "velocity": [0, 0],
+    "angularVelocity": 0
+  },
+  {
+    "type": "static",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": ["width", 128],
+    "image": {
+      "width": 39,
+      "height": 128,
+      "drawMethod": "repeat-x",
+      "file": "ground.png"
+    },
+    "center": ["center", "bottom"],
+    "rotationCenter": ["center", "bottom"],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        ["-halfWidth", 64],
+        ["halfWidth", 64],
+        ["halfWidth", -64],
+        ["-halfWidth", -64]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [200, 200],
+    "rotationCenter": [200, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [300, 200],
+    "rotationCenter": [300, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [400, 200],
+    "rotationCenter": [400, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [500, 300],
+    "rotationCenter": [500, 300],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [400, 300],
+    "rotationCenter": [400, 300],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [500, 400],
+    "rotationCenter": [500, 400],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [300, 300],
+    "rotationCenter": [300, 300],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [400, 400],
+    "rotationCenter": [400, 400],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [500, 500],
+    "rotationCenter": [500, 500],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [600, 600],
+    "rotationCenter": [600, 600],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [700, 500],
+    "rotationCenter": [700, 500],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [600, 500],
+    "rotationCenter": [600, 500],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [800, 400],
+    "rotationCenter": [800, 400],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [700, 400],
+    "rotationCenter": [700, 400],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [900, 300],
+    "rotationCenter": [900, 300],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [800, 300],
+    "rotationCenter": [800, 300],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [1000, 200],
+    "rotationCenter": [1000, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [900, 200],
+    "rotationCenter": [900, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [600, 400],
+    "rotationCenter": [600, 400],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [600, 300],
+    "rotationCenter": [600, 300],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [600, 200],
+    "rotationCenter": [600, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [500, 200],
+    "rotationCenter": [500, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [700, 300],
+    "rotationCenter": [700, 300],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [700, 200],
+    "rotationCenter": [700, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "dynamic",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [100, 100],
+    "image": {
+      "width": 200,
+      "height": 210,
+      "drawMethod": "fillPoly",
+      "file": "star_sprite.png"
+    },
+    "center": [800, 200],
+    "rotationCenter": [800, 200],
+    "rotation": 0,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [0, 50],
+        [10, 10],
+        [50, 0],
+        [10, -10],
+        [0, -50],
+        [-10, -10],
+        [-50, 0],
+        [-10, 10]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": -0.003
+  },
+  {
+    "type": "static",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [700, 50],
+    "image": {
+      "width": 39,
+      "height": 128,
+      "drawMethod": "repeat-x",
+      "file": "ground.png"
+    },
+    "center": [300, 430],
+    "rotationCenter": [300, 430],
+    "rotation": 45,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [-350, 25],
+        [350, 25],
+        [350, -25],
+        [-350, -25]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0.003
+  },
+  {
+    "type": "static",
+    "physics": false,
+    "special": "none",
+    "frames": {
+      "columns": 1,
+      "rows": 1,
+      "current": 0
+    },
+    "size": [700, 50],
+    "image": {
+      "width": 39,
+      "height": 128,
+      "drawMethod": "repeat-x",
+      "file": "ground.png"
+    },
+    "center": [900, 430],
+    "rotationCenter": [900, 430],
+    "rotation": -45,
+    "scale": 1,
+    "shape": {
+      "type": "polygon",
+      "vertices": [
+        [-350, 25],
+        [350, 25],
+        [350, -25],
+        [-350, -25]
+      ],
+      "dimensions": []
+    },
+    "opacity": 1,
+    "cor": 0,
+    "cof": 0.05,
+    "velocity": [0, 0],
+    "angularVelocity": 0
+  }
+]
