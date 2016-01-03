@@ -1,5 +1,5 @@
 # ProjectRed
-A JavaScript based Game [Engine], under development.
+A JavaScript based Game [Engine], under development. I started working on it because I wanted to make a game on HTML5. I looked at various engines but instead of using the pre-built engines I wanted to challenge myself and have some fun at the same time.
 
 ### Current Features :
 
@@ -7,7 +7,9 @@ A JavaScript based Game [Engine], under development.
 2. Physics processing which includes gravity, friction, and restitution. [Angular velocity depiction is not accurate yet, and accurate one doesn't look good either.]
 3. JSON sprite input which allows maximum flexibility and easy stage creation.
 4. Menu System with various text animations, mainly enter, emphasis and exit transitions.
-5. And More...
+5. Sprite caching, i.e, keeps only one copy of texture for multiple sprites separately.
+6. Implementation of multiple layers, static and dynamic to improve performance.
+7. And More...
 
 ### Current Bugs Found :
 

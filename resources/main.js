@@ -978,10 +978,11 @@
                 DistancePQ = DistanceP + DistanceQ,
                 SegmentMagnitudeCeil = ceil(segmentMagnitude || Magnitude(segment));
             if (DEBUGGING) {
-                DrawSegment(Projection, '#ffff00');
-                DrawCircle(Projection.Q, 1, '#ffff00');
-                DrawCircle(segment.P, 1, '#00ff00');
-                DrawCircle(segment.Q, 1, '#ff0000');
+                DrawSegment(segment, '#D500F9');
+                DrawSegment(Projection, '#EEFF41');
+                DrawCircle(Projection.Q, 1, '#EEFF41');
+                DrawCircle(segment.P, 1, '#D500F9');
+                DrawCircle(segment.Q, 1, '#D500F9');
             }
             if (ceil(DistancePQ) === SegmentMagnitudeCeil) {
                 return radius - Distance;
