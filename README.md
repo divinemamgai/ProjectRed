@@ -17,5 +17,5 @@ A JavaScript based Game [Engine], under development.
 ### Current Limitations :
 
 1. Collision detection limited to Circle With Polygons.
-2. Collision response and detection (this will work though) is not implemented for dynamic [with physics on] sprites, i.e, two dynamic sprites with physics turned on won't be detected by the collision system and response is not appropriate yet.
+2. Collision response and detection (detection will work though) is not implemented for dynamic (with physics on) sprites, i.e, two dynamic sprites with physics turned on won't be detected by the collision system and response is not appropriate yet.
 3. Single screen stage, i.e., no camera movement.
