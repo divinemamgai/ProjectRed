@@ -7,7 +7,7 @@
     // in release version.
     // ---------------------------------------------------------------------//
 
-    var DEBUGGING = false,
+    var DEBUGGING = true,
         DEBUGGER,
         DEBUGGER_DOM,
         DEBUGGER_MESSAGE_COUNT_DOM,
@@ -41,10 +41,10 @@
         GRAVITY = 1,
         CONVERSION_FACTOR = 1,
         MINIMUM_VELOCITY = 0.02,
-        MAXIMUM_VELOCITY = 0.3,
-        MAXIMUM_VELOCITY_FASTER = 0.5,
+        MAXIMUM_VELOCITY = 0.2,
+        MAXIMUM_VELOCITY_FASTER = 0.3,
         VELOCITY_STEP = 0.03,
-        VELOCITY_STEP_FASTER = 0.05,
+        VELOCITY_STEP_FASTER = 0.04,
         GEOMETRY_SIZE = 0,
         GEOMETRY_POINT = 1,
         GEOMETRY_LINE = 2,
@@ -413,7 +413,7 @@
      * @return {number}
      */
     function Degree(radian) {
-        return 180 * radian / PI;
+        return radian * ONE_EIGHTY_BY_PI;
     }
 
     // Basic objects are declared here along with there respective functions.
@@ -549,7 +549,7 @@
                 } else if (qx === px) {
                     return squared ? Y * Y : abs(Y);
                 } else {
-                    return squared ? Y * Y + X * X : sqrt(Y * Y + X * X);
+                    return squared ? Y * Y + X * X : RoundDecimal(sqrt(Y * Y + X * X));
                 }
                 break;
             case GEOMETRY_VECTOR:
@@ -560,7 +560,7 @@
                 } else if (a === 0) {
                     return squared ? a * a : abs(a);
                 } else {
-                    return squared ? a * a + b * b : sqrt(a * a + b * b);
+                    return squared ? a * a + b * b : RoundDecimal(sqrt(a * a + b * b));
                 }
                 break;
         }
@@ -620,7 +620,7 @@
             case GEOMETRY_POINT:
                 X = geometry.X - x;
                 Y = geometry.Y - y;
-                return Y === 0 ? squared ? X * X : X : X === 0 ? squared ? Y * Y : Y : squared ? X * X + Y * Y : sqrt(X * X + Y * Y);
+                return Y === 0 ? squared ? X * X : X : X === 0 ? squared ? Y * Y : Y : squared ? X * X + Y * Y : RoundDecimal(sqrt(X * X + Y * Y));
                 break;
             case GEOMETRY_LINE:
                 slope = slope || Slope(geometry);
@@ -636,7 +636,7 @@
                         break;
                     default:
                         X = y - (slope * slope) * x - c;
-                        return squared ? (X * X) / (1 + (slope * slope)) : X / sqrt(1 + (slope * slope));
+                        return RoundDecimal(squared ? (X * X) / (1 + (slope * slope)) : X / sqrt(1 + (slope * slope)));
                         break;
                 }
                 break;
@@ -655,7 +655,7 @@
                         break;
                     default:
                         X = y - py - slope * (x - px);
-                        return squared ? X * X / (1 + (slope * slope)) : X / sqrt(1 + (slope * slope));
+                        return RoundDecimal(squared ? X * X / (1 + (slope * slope)) : X / sqrt(1 + (slope * slope)));
                         break;
                 }
                 break;
@@ -669,7 +669,7 @@
                 // Returning an unit vector along the line.
                 // Not to be used extensively, since expensive square root function is called here.
                 var m = geometry.M;
-                A = 1 / sqrt(1 + m * m);
+                A = RoundDecimal(1 / sqrt(1 + m * m));
                 B = m * A;
                 break;
             case GEOMETRY_SEGMENT:
@@ -699,7 +699,10 @@
      * @return {boolean}
      */
     function PointInSegment(segment, point) {
-        return abs(DistanceFrom(segment.P, point)) + abs(DistanceFrom(segment.Q, point)) === Magnitude(segment);
+        var DistanceP = abs(DistanceFrom(segment.P, point)),
+            DistanceQ = abs(DistanceFrom(segment.Q, point)),
+            SegmentMagnitude = ceil(Magnitude(segment));
+        return ceil(DistanceP + DistanceQ) == SegmentMagnitude;
     }
 
     function SegmentProjection(baseSegment, projectingSegment, baseSegmentSlope) {
@@ -752,6 +755,17 @@
             px = p.X,
             py = p.Y;
         return (y - py) * (qx - px) - (x - px) * (qy - py);
+    }
+
+    /**
+     * @return {number}
+     */
+    function PositionOfPointSlope(m, X, Y, x, y) {
+        if (m >= 0) {
+            return m * (X - x) + y - Y;
+        } else {
+            return m * (x - X) + Y - y;
+        }
     }
 
     /**
@@ -821,6 +835,130 @@
         }
     }
 
+    function GetContactPoint(vertices, vector, point) {
+        var m = Slope(vector),
+            sA = sign(vector.A),
+            sB = sign(vector.B),
+            X = point.X,
+            Y = point.Y,
+            n = vertices.length,
+            i = 0,
+            S, mS, cS,
+            px, py,
+            qx, qy,
+            cp = Point(0, 0);
+        switch (m) {
+            case 0:
+                for (; i < n; i++) {
+                    S = Segment(vertices[i], vertices[(i + 1) % n]);
+                    mS = Slope(S);
+                    switch (mS) {
+                        case 0:
+                            break;
+                        case Infinity:
+                            px = S.P.X;
+                            py = S.P.Y;
+                            qx = S.Q.X;
+                            qy = S.Q.Y;
+                            if ((X > px && sA > 0) || (X < px && sA < 0)) {
+                                cp.X = px;
+                                cp.Y = Y;
+                                if (PointInSegment(S, cp)) return cp;
+                            }
+                            break;
+                        default:
+                            px = S.P.X;
+                            py = S.P.Y;
+                            qx = S.Q.X;
+                            qy = S.Q.Y;
+                            if (-sA === sign(PositionOfPointSlope(mS, px, py, X, Y))) {
+                                cp.X = ((Y - py) / mS) + px;
+                                cp.Y = Y;
+                                if (PointInSegment(S, cp)) return cp;
+                            }
+                            break;
+                    }
+                }
+                break;
+            case Infinity:
+                for (; i < n; i++) {
+                    S = Segment(vertices[i], vertices[(i + 1) % n]);
+                    mS = Slope(S);
+                    switch (mS) {
+                        case 0:
+                            px = S.P.X;
+                            py = S.P.Y;
+                            qx = S.Q.X;
+                            qy = S.Q.Y;
+                            if ((Y > py && sB > 0) || (Y < py && sB < 0)) {
+                                cp.X = X;
+                                cp.Y = py;
+                                if (PointInSegment(S, cp)) return cp;
+                            }
+                            break;
+                        case Infinity:
+                            break;
+                        default:
+                            px = S.P.X;
+                            py = S.P.Y;
+                            qx = S.Q.X;
+                            qy = S.Q.Y;
+                            if (sB === sign(PositionOfPointSlope(mS, px, py, X, Y) * mS)) {
+                                cp.X = X;
+                                cp.Y = py + mS * (X - px);
+                                if (PointInSegment(S, cp)) return cp;
+                            }
+                            break;
+                    }
+                }
+                break;
+            default:
+                var c = Y - m * X;
+                for (; i < n; i++) {
+                    S = Segment(vertices[i], vertices[(i + 1) % n]);
+                    mS = Slope(S);
+                    switch (mS) {
+                        case 0:
+                            px = S.P.X;
+                            py = S.P.Y;
+                            qx = S.Q.X;
+                            qy = S.Q.Y;
+                            if ((Y > py && sB > 0) || (Y < py && sB < 0)) {
+                                cp.X = (py - c) / m;
+                                cp.Y = py;
+                                if (PointInSegment(S, cp)) return cp;
+                            }
+                            break;
+                        case Infinity:
+                            px = S.P.X;
+                            py = S.P.Y;
+                            qx = S.Q.X;
+                            qy = S.Q.Y;
+                            if ((X > px && sA > 0) || (X < px && sA < 0)) {
+                                cp.X = px;
+                                cp.Y = m * px + c;
+                                if (PointInSegment(S, cp)) return cp;
+                            }
+                            break;
+                        default:
+                            if (mS !== m) {
+                                px = S.P.X;
+                                py = S.P.Y;
+                                qx = S.Q.X;
+                                qy = S.Q.Y;
+                                cS = py - mS * px;
+                                cp.X = (c - cS) / (mS - m);
+                                cp.Y = mS * cp.X + cS;
+                                if (PointInSegment(S, cp) && (sign(cp.X - X) * sA <= 0) && (sign(cp.Y - Y) * sB <= 0)) return cp;
+                            }
+                            break;
+                    }
+                }
+                break;
+        }
+        return cp;
+    }
+
     /**
      * @return {boolean}
      */
@@ -830,9 +968,6 @@
         return (X * X + Y * Y) <= radius * radius;
     }
 
-    /**
-     * @return {boolean}
-     */
     function CircleSegmentIntersection(center, radius, segment, segmentSlope, segmentMagnitude) {
         var SegmentSlope = segmentSlope || Slope(segment),
             Distance = abs(DistanceFrom(segment, center, SegmentSlope, false));
@@ -849,20 +984,11 @@
                 DrawCircle(segment.Q, 1, '#ff0000');
             }
             if (ceil(DistancePQ) === SegmentMagnitudeCeil) {
-                return {
-                    Vertex: undefined,
-                    Delta: radius - Distance
-                };
+                return radius - Distance;
             } else if (ceil(DistanceP) >= SegmentMagnitudeCeil && PointInCircle(center, radius, segment.Q)) {
-                return {
-                    Vertex: segment.Q,
-                    Delta: radius - abs(DistanceFrom(center, segment.Q))
-                };
+                return radius - abs(DistanceFrom(center, segment.Q));
             } else if (ceil(DistanceQ) >= SegmentMagnitudeCeil && PointInCircle(center, radius, segment.P)) {
-                return {
-                    Vertex: segment.P,
-                    Delta: radius - abs(DistanceFrom(center, segment.P))
-                };
+                return radius - abs(DistanceFrom(center, segment.P));
             } else return false;
         }
         return false;
@@ -876,6 +1002,14 @@
     }
 
     // Some basic Debugging function go here.
+
+    function DrawText(text, x, y, size, color) {
+        color = color || '#ffffff';
+        size = size || 16;
+        DEBUGGING_CANVAS_CONTEXT.font = size + 'px Arial';
+        DEBUGGING_CANVAS_CONTEXT.fillStyle = color;
+        DEBUGGING_CANVAS_CONTEXT.fillText(text, x, OrdinateCorrection(y));
+    }
 
     function DrawSegment(segment, color) {
         color = color || '#ffffff';
@@ -1008,8 +1142,7 @@
         ComplementCOFArray = [], // Stores (1 - (coefficient of friction)) of the respective sprites.
         VelocityArray = [], // Stores an Vector object having the horizontal and vertical velocity magnitudes (metre/sec) of the respective sprites.
         AngularVelocityArray = [], // Stores the angular velocity (rads/sec) value of the respective sprites.
-        HorizontalContactArray = [],// Stores an array of boolean whether the sprite is in contact with other sprites or not horizontally.
-        VerticalContactArray = [], // Stores an array of boolean whether the sprite is in contact with other sprites or not vertically.
+        ContactArray = [],// Stores an array of boolean whether the sprite is in contact with other sprites or not.
         NUMBER_OF_ELEMENTS = 6, // 1 - Initialization & 5 - Texture Caching
         LOADING_DOM,
         LOADING_STATE_DOM,
@@ -1058,8 +1191,7 @@
         ComplementCOFArray.length = 0;
         VelocityArray.length = 0;
         AngularVelocityArray.length = 0;
-        HorizontalContactArray.length = 0;
-        VerticalContactArray.length = 0;
+        ContactArray.length = 0;
     }
 
     /**
@@ -1241,11 +1373,20 @@
                 }
                 return {
                     Sides: Dimensions,
-                    HalfSides: Dimensions.map(function (i) {
-                        return RoundDecimal(i / 2);
-                    }),
-                    DoubleSides: Dimensions.map(function (i) {
-                        return RoundDecimal(i * 2);
+                    //HalfSides: Dimensions.map(function (i) {
+                    //    return RoundDecimal(i / 2);
+                    //}),
+                    //DoubleSides: Dimensions.map(function (i) {
+                    //    return RoundDecimal(i * 2);
+                    //}),
+                    //CeilHalfSides: Dimensions.map(function (i) {
+                    //    return ceil(i / 2);
+                    //}),
+                    //CeilDoubleSides: Dimensions.map(function (i) {
+                    //    return ceil(i * 2);
+                    //}),
+                    CeilSides: Dimensions.map(function (i) {
+                        return ceil(i);
                     })
                 };
                 break;
@@ -1536,7 +1677,7 @@
                 AddImageDOM(i, Sprite.image.file);
                 CenterArray[i] = ProcessCenter(Sprite.center, HalfSizeArray[i]);
                 RotationCenterArray[i] = ProcessCenter(Sprite.rotationCenter, HalfSizeArray[i]);
-                RotationCenterEqualArray[i] = CenterArray[i] === RotationCenterArray[i];
+                RotationCenterEqualArray[i] = (CenterArray[i].X === RotationCenterArray[i].X) && (CenterArray[i].Y === RotationCenterArray[i].Y);
                 RotationArray[i] = ProcessRotation(parseFloat(Sprite.rotation) * PI_BY_ONE_EIGHTY);
                 ScaleArray[i] = RoundDecimal(Sprite.scale);
                 ShapeTypeArray[i] = ProcessShapeType(Sprite.shape.type);
@@ -1550,8 +1691,7 @@
                 ComplementCOFArray[i] = RoundDecimal(1 - COFArray[i]);
                 VelocityArray[i] = Vector(RoundDecimal(Sprite.velocity[0]), RoundDecimal(Sprite.velocity[1]));
                 AngularVelocityArray[i] = Sprite.angularVelocity;
-                HorizontalContactArray[i] = false;
-                VerticalContactArray[i] = false;
+                ContactArray[i] = false;
                 UpdateLoadingPercentage(++Count);
             }
             UpdateLoadingState('Caching Textures...');
@@ -3088,6 +3228,8 @@
         }
     }
 
+    // Important Rendering and Collision Detection Functions...
+
     function UpdatePosition(i, deltaX, deltaY, theta) {
         var deltaCheck = deltaX !== 0 || deltaY !== 0,
             thetaCheck = theta !== 0,
@@ -3158,6 +3300,7 @@
             SpriteWithShapeType = ShapeTypeArray[j],
             CenterOf = CenterArray[i],
             CenterWith = CenterArray[j],
+            VelocityOf = VelocityArray[i],
             Collision = BoundingRectanglesCollision(i, j);
         if (Collision) {
             if (DEBUGGING) {
@@ -3171,63 +3314,62 @@
                             var Radius = DimensionsArray[i].Radius,
                                 VerticesWith = VerticesArray[j],
                                 WithEdge = GetContactEdge(VerticesWith, CenterWith, CenterOf);
+                            DrawPolygon(VerticesWith, '#ff0000');
                             if (WithEdge) {
-                                var WithEdgeMagnitude = DimensionsArray[j][WithEdge.Index],
+                                var WithEdgeMagnitude = DimensionsArray[j].CeilSides[WithEdge.Index],
                                     WithEdgeSlope = Slope(WithEdge.Edge),
                                     IsInPolygon = InPolygon(VerticesWith, CenterOf),
-                                    Escape;
+                                    Delta;
                                 WithEdge = WithEdge.Edge;
                                 if (IsInPolygon) {
-                                    Escape = {
-                                        Vertex: undefined,
-                                        Delta: -(abs(DistanceFrom(WithEdge, CenterOf, WithEdgeSlope)) + Radius)
-                                    };
-                                    if (DEBUGGING) {
-                                        DrawCircle(CenterOf, 1, '#ff0000');
-                                        DrawCircle(CenterOf, Radius, '#ff0000');
+                                    CenterOf = GetContactPoint(VerticesWith, VelocityOf, CenterOf);
+                                    CenterArray[i] = CenterOf;
+                                    if (RotationCenterEqualArray[i]) {
+                                        RotationCenterArray[i].X = CenterOf.X;
+                                        RotationCenterArray[i].Y = CenterOf.Y;
                                     }
-                                } else Escape = CircleSegmentIntersection(CenterOf, Radius, WithEdge, WithEdgeSlope, WithEdgeMagnitude);
-                                if (Escape) {
+                                    Delta = Radius;
+                                } else Delta = CircleSegmentIntersection(CenterOf, Radius, WithEdge, WithEdgeSlope, WithEdgeMagnitude);
+                                if (Delta) {
                                     var CenterPosition = sign(EvaluateSegment(WithEdge, CenterOf, WithEdgeSlope)),
                                         COROf = CORArray[i],
-                                        ComplementCOFWith = ComplementCOFArray[j],
-                                        Delta = Escape.Delta;
+                                        ComplementCOFWith = ComplementCOFArray[j];
                                     switch (WithEdgeSlope) {
                                         case 0:
                                             UpdatePosition(i, 0, CenterPosition * Delta, 0);
-                                            VelocityArray[i].B *= VelocityArray[i].B >= MINIMUM_VELOCITY ? 0 : -COROf;
-                                            VelocityArray[i].A *= abs(VelocityArray[i].A) <= MINIMUM_VELOCITY ? 0 : ComplementCOFWith;
-                                            HorizontalContactArray[i] ^= true;
+                                            VelocityOf.B *= VelocityOf.B >= MINIMUM_VELOCITY ? 0 : -COROf;
+                                            VelocityOf.A *= abs(VelocityOf.A) <= MINIMUM_VELOCITY ? 0 : ComplementCOFWith;
                                             break;
                                         case Infinity:
                                             UpdatePosition(i, CenterPosition * Delta, 0, 0);
-                                            VelocityArray[i].A *= abs(VelocityArray[i].A) <= MINIMUM_VELOCITY ? 0 : -(COROf * ComplementCOFWith);
-                                            VerticalContactArray[i] ^= true;
+                                            VelocityOf.A *= abs(VelocityOf.A) <= MINIMUM_VELOCITY ? 0 : -(COROf * ComplementCOFWith);
+                                            VelocityOf.B *= abs(VelocityOf.B) <= MINIMUM_VELOCITY ? 0 : ComplementCOFWith;
                                             break;
                                         default :
-                                            var Theta = atan(WithEdgeSlope),
+                                            var CenterWithPosition = sign(PositionOfPointSlope(WithEdgeSlope, WithEdge.P.X, WithEdge.P.Y, CenterWith.X, CenterWith.Y)),
                                                 SlopeSign = sign(WithEdgeSlope),
-                                                XSign = (IsInPolygon ? -1 : 1) * (SlopeSign === CenterPosition ? -1 : 1),
-                                                YSign = (IsInPolygon ? -1 : 1) * CenterPosition,
+                                                Theta = atan(WithEdgeSlope),
                                                 Sin = sin(Theta),
                                                 Cos = cos(Theta),
-                                                DeltaX = abs(Delta * Sin),
-                                                DeltaY = abs(Delta * Cos),
+                                                DeltaX = CenterWithPosition * RoundDecimal(abs(Delta * Sin)),
+                                                DeltaY = (CenterWithPosition !== SlopeSign ? 1 : -1) * RoundDecimal(abs(Delta * Cos)),
                                                 A = VelocityArray[i].A,
                                                 B = VelocityArray[i].B,
                                                 A_ = (A * Sin - B * Cos) * ComplementCOFWith,
                                                 B_ = -(A * Cos + B * Sin) * COROf;
-                                            UpdatePosition(i, XSign * DeltaX, YSign * DeltaY, 0);
+                                            UpdatePosition(i, DeltaX, DeltaY, 0);
+                                            if (DEBUGGING) {
+                                                DrawText('SlopeSign : ' + SlopeSign, 10, 10, 20);
+                                                DrawText('CenterOfPosition : ' + sign(PositionOfPointSlope(WithEdgeSlope, WithEdge.P.X, WithEdge.P.Y, CenterOf.X, CenterOf.Y)), 10, 30, 20);
+                                                DrawText('CenterWithPosition : ' + sign(PositionOfPointSlope(WithEdgeSlope, WithEdge.P.X, WithEdge.P.Y, CenterWith.X, CenterWith.Y)), 10, 50, 20);
+                                                DrawCircle(CenterOf, Radius, '#00ff00');
+                                                //Pause();
+                                            }
                                             VelocityArray[i].B = -SlopeSign * (B_ * Cos - A_ * Sin) * ComplementCOFWith;
                                             VelocityArray[i].A = -SlopeSign * (B_ * Sin + A_ * Cos) * COROf;
-                                            if (DEBUGGING) {
-                                                DrawCircle(CenterOf, 1, '#00ff00');
-                                                DrawCircle(CenterOf, Radius, '#00ff00');
-                                            }
-                                            HorizontalContactArray[i] ^= true;
-                                            VerticalContactArray[i] ^= true;
                                             break;
                                     }
+                                    ContactArray[i] ^= true;
                                 }
                             }
                             break;
@@ -3312,9 +3454,9 @@
             VelocityArray[PLAYER].A += VelocityArray[PLAYER].A >= (Faster ? MAXIMUM_VELOCITY_FASTER : MAXIMUM_VELOCITY) ? 0 : (Faster ? VELOCITY_STEP_FASTER : VELOCITY_STEP);
         }
         if (IsKeyPressed('Space')) {
-            if (HorizontalContactArray[PLAYER]) VelocityArray[PLAYER].B = Faster ? 0.6 : 0.5;
+            if (ContactArray[PLAYER]) VelocityArray[PLAYER].B = Faster ? 0.55 : 0.45;
         } else if (IsKeyPressed('Control')) {
-            VelocityArray[PLAYER].B -= 0.015;
+            VelocityArray[PLAYER].B -= Faster ? 0.02 : 0.01;
         }
         if (IsKeyPressed('Z')) {
             TimeDelta = SLOWER_TIME_DELTA;
@@ -3360,7 +3502,7 @@
         else context.drawImage(Image, 0, 0);
         if (DEBUGGING) {
             DrawCircle(RotationCenterArray[i], 1, '#00ffff');
-            DrawCircle(Center, 1, '#76FF03');
+            DrawCircle(Center, 1, '#ff0000');
         }
         context.restore();
     }
@@ -3392,14 +3534,13 @@
     function GameLoop(timestamp) {
         if (!Paused) {
             Render();
-            timestamp -= TimeCorrection;
-            LastTime = timestamp;
-            HorizontalContactArray[PLAYER] = false;
-            VerticalContactArray[PLAYER] = false;
             ProcessPhysics(TimeDelta);
             ProcessPositions(TimeDelta);
+            ContactArray[PLAYER] = false;
             ProcessCollisions();
             ProcessInput();
+            timestamp -= TimeCorrection;
+            LastTime = timestamp;
             UpdateFPS(timestamp);
             GameLoopID = RequestAnimationFrame(GameLoop);
         } else GameLoopID = RequestAnimationFrame(GameLoop);
