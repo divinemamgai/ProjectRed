@@ -3,7 +3,7 @@ A JavaScript based Game [Engine], under development.
 
 ### Current Features :
 
-1. Greedy algorithms for collision detection between circle and any closed polygon.
+1. Greedy algorithms for collision detection between circle and any closed polygon and it's response in position as well as velocities based on physical properties.
 2. Physics processing which includes gravity, friction, and restitution. [Angular velocity depiction is not accurate yet, and accurate one doesn't look good either.]
 3. JSON sprite input which allows maximum flexibility and easy stage creation.
 4. Menu System with various text animations, mainly enter, emphasis and exit transitions.
@@ -17,4 +17,5 @@ A JavaScript based Game [Engine], under development.
 ### Current Limitations :
 
 1. Collision detection limited to Circle With Polygons.
-2. Single screen stage, i.e., no camera movement.
+2. Collision response and detection (this will work though) is not implemented for dynamic [with physics on] sprites, i.e, two dynamic sprites with physics turned on won't be detected by the collision system and response is not appropriate yet.
+3. Single screen stage, i.e., no camera movement.
